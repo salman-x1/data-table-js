@@ -1,26 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data Table</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
+  <body>
+    <form class="searchData-ctn" id="searchForm">
+      <input
+        class="inputSearch"
+        id="searchInput"
+        type=""
+        placeholder="Search Product Name"
+        onkeyup="searchTable()"
+      />
+    </form>
+
+    <div class="addButton" id="addModalButton">
+      <button class="button-6">Add Row</button>
+    </div>
+
+    <div class="dropDownColumn">
+      <select id="addColumnDropdown" class="addColumnDropDown">
+        <option value="">Select New Column</option>
+        <option value="Column 1">Column 1</option>
+        <option value="Column 2">Column 2</option>
+        <option value="Column 3">Column 3</option>
+      </select>
+      <button class="button-6" onclick="addColumn()">Add Column</button>
+      <button class="button-6" onclick="deleteColumn()">Delete Column</button>
+    </div>
+
+    <div class="addModal" id="addModal">
+      <span class="close">&times;</span>
+
+      <div>
+        <div class="addNewProduct-ctn">
+          <h2>Add New Product</h2>
+        </div>
+        <div class="addProduct-ctn">
+          <form action="" id="addRowForm">
+            <div>
+              <span>Product Name</span>
+              <input type="text" id="productName" />
+            </div>
+            <div>
+              <span>Product Title</span>
+              <input type="text" id="productTitle" />
+            </div>
+            <div>
+              <span>Product Description</span>
+              <input type="text" id="productDesc" />
+            </div>
+            <div>
+              <span>Product Vendor</span>
+              <input type="text" id="productVendor" />
+            </div>
+            <div>
+              <span>In Stock</span>
+              <input type="text" id="inStock" />
+            </div>
+            <div>
+              <span>Buying Price</span>
+              <input type="number" id="buyingPrice" />
+            </div>
+            <div>
+              <span>Sale Price</span>
+              <input type="number" id="salePrice" />
+            </div>
+            <div>
+              <span>Purchase Quantity</span>
+              <input type="number" id="purchaseQuantity" />
+            </div>
+            <div>
+              <span>Product Type</span>
+              <input type="text" id="productType" placeholder="A B or C" />
+            </div>
+            <div>
+              <span>Shipping Rates</span>
+              <input type="number" id="shippingRates" />
+            </div>
+            <div>
+              <span>Refill Limit</span>
+              <input type="number" id="refillLimit" />
+            </div>
+            <div>
+              <span>Product Location Address</span>
+              <input type="text" id="productAddress" />
+            </div>
+            <div>
+              <button type="submit" class="button-6">Add Product</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <div class="table-container">
-
-
-        <table id="dataTable">
-            <thead>
-                <tr>
-                    <td>
-                        Data Table
-                    </td>
-                </tr>
-            </thead>
-
+      <table id="dataTable">
+        <thead>
+          <tr>
             <th class="select-opt">Select Options</th>
             <th>ID</th>
             <th>Product Name</th>
@@ -36,239 +117,427 @@
             <th>Refill Limit</th>
             <th>Product Location Address</th>
             <th>Actions</th>
-            <tr>
-                <td class="td-input-checkbox">
-                    <!-- <input class="checkbox-input" type="checkbox" name="" id=""> -->
-                    <input type="checkbox" class="larger" name="checkBox2" checked>
-                </td>
-                <td>1</td>
-                <td>Mouse </td>
-                <td>Lenovo </td>
-                <td>Product Description A</td>
-                <td>Product Vendor A</td>
-                <td>Yes</td>
-                <td>75$</td>
-                <td>85$</td>
-                <td>100</td>
-                <td>A</td>
-                <td>10$</td>
-                <td>130</td>
-                <td>Address 2141 , Street 1</td>
-                <td>
-                    <div class="action-img-class">
-                        <a href=""><img title="Add Vendor" class="vendor-icon" src="vendor.png" alt=""></a>
-                        <a href=""><img title="Add Product" class="add-product-icon" src="add-product.png" alt=""></a>
-                        <a href=""><img title="Edit Product" class="remove-product-icon" src="edit-product.png" alt=""></a>
-                    </div>
-                </td>                    
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="larger" name="checkBox2" checked>
-                </td>
-                <td>2</td>
-                <td>Computer </td>
-                <td>Lenovo </td>
-                <td>Product Description A</td>
-                <td>A</td>
-                <td>Yes</td>
-                <td>90$</td>
-                <td>85$</td>
-                <td>90</td>
-                <td>C</td>
-                <td>40$</td>
-                <td>130</td>
-                <td>Address 51 , Street 3</td>
-                <td>
-                    <div class="action-img-class">
-                        <a href=""><img title="Add Vendor" class="vendor-icon" src="vendor.png" alt=""></a>
-                        <a href=""><img title="Add Product" class="add-product-icon" src="add-product.png" alt=""></a>
-                        <a href=""><img title="Edit Product" class="remove-product-icon" src="edit-product.png" alt=""></a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="larger" name="checkBox2" checked>
-                </td>
-                <td>3</td>
-                <td>IPhone </td>
-                <td>Lenovo </td>
-                <td>Product Description A</td>
-                <td>B</td>
-                <td>Yes</td>
-                <td>185$</td>
-                <td>85$</td>
-                <td>100</td>
-                <td>C</td>
-                <td>30$</td>
-                <td>130</td>
-                <td>Address 2141 , Street 1</td>
-                <td>
-                    <div class="action-img-class">
-                        <a href=""><img title="Add Vendor" class="vendor-icon" src="vendor.png" alt=""></a>
-                        <a href=""><img title="Add Product" class="add-product-icon" src="add-product.png" alt=""></a>
-                        <a href=""><img title="Edit Product" class="remove-product-icon" src="edit-product.png" alt=""></a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="larger" name="checkBox2" checked>
-                </td>
-                <td>4</td>
-                <td>Tab </td>
-                <td>Lenovo </td>
-                <td>Product Description A</td>
-                <td>C</td>
-                <td>Yes</td>
-                <td>55$</td>
-                <td>85$</td>
-                <td>100</td>
-                <td>B</td>
-                <td>20$</td>
-                <td>130</td>
-                <td>Address 2141 , Street 1</td>
-                <td>
-                    <div class="action-img-class">
-                        <a href=""><img title="Add Vendor" class="vendor-icon" src="vendor.png" alt=""></a>
-                        <a href=""><img title="Add Product" class="add-product-icon" src="add-product.png" alt=""></a>
-                        <a href=""><img title="Edit Product" class="remove-product-icon" src="edit-product.png" alt=""></a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="larger" name="checkBox2" checked>
-                </td>
-                <td>5</td>
-                <td>Mobile </td>
-                <td>Lenovo </td>
-                <td>Product Description A</td>
-                <td>Product Vendor A</td>
-                <td>Yes</td>
-                <td>150$</td>
-                <td>85$</td>
-                <td>100</td>
-                <td>A</td>
-                <td>20$</td>
-                <td>130</td>
-                <td>Address 2141 , Street 1</td>
-                <td>
-                    <div class="action-img-class">
-                        <a href=""><img title="Add Vendor" class="vendor-icon" src="vendor.png" alt=""></a>
-                        <a href=""><img title="Add Product" class="add-product-icon" src="add-product.png" alt=""></a>
-                        <a href=""><img title="Edit Product" class="remove-product-icon" src="edit-product.png" alt=""></a>
-                    </div>
-                </td>
-            </tr>
+          </tr>
+        </thead>
 
-            <tr>
-                <td>
-                    <input type="checkbox" class="larger" name="checkBox2" checked>
-                </td>
-                <td>6</td>
-                <td>Laptop </td>
-                <td>Samsung </td>
-                <td>Product Description A</td>
-                <td>Product Vendor A</td>
-                <td>Yes</td>
-                <td>20$</td>
-                <td>85$</td>
-                <td>100</td>
-                <td>D</td>
-                <td>20$</td>
-                <td>130</td>
-                <td>Address 2141 , Street 1</td>
-                <td>
-                    <div class="action-img-class">
-                        <a href=""><img title="Add Vendor" class="vendor-icon" src="vendor.png" alt=""></a>
-                        <a href=""><img title="Add Product" class="add-product-icon" src="add-product.png" alt=""></a>
-                        <a href=""><img title="Edit Product" class="remove-product-icon" src="edit-product.png" alt=""></a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="larger" name="checkBox2" checked>
-                </td>
-                <td>7</td>
-                <td>Computer </td>
-                <td>Dull </td>
-                <td>Product Description A</td>
-                <td>Product Vendor D</td>
-                <td>Yes</td>
-                <td>105$</td>
-                <td>85$</td>
-                <td>100</td>
-                <td>E</td>
-                <td>20$</td>
-                <td>130</td>
-                <td>Address 2141 , Street 1</td>
-                <td>
-                    <div class="action-img-class">
-                        <a href=""><img title="Add Vendor" class="vendor-icon" src="vendor.png" alt=""></a>
-                        <a href=""><img title="Add Product" class="add-product-icon" src="add-product.png" alt=""></a>
-                        <a href=""><img title="Edit Product" class="remove-product-icon" src="edit-product.png" alt=""></a>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <tbody>
+          <tr>
+            <td class="td-input-checkbox">
+              <!-- <input class="checkbox-input" type="checkbox" name="" id=""> -->
+              <input type="checkbox" class="larger" name="checkBox2" checked />
+            </td>
+            <td>1</td>
+            <td>Mouse</td>
+            <td>Lenovo</td>
+            <td>Product Description A</td>
+            <td>Product Vendor A</td>
+            <td>Yes</td>
+            <td>75$</td>
+            <td>85$</td>
+            <td>100</td>
+            <td>A</td>
+            <td>10$</td>
+            <td>130</td>
+            <td>Address 2141 , Street 1</td>
+            <td>
+              <div class="action-img-class">
+                <a href=""
+                  ><img
+                    title="Add Vendor"
+                    class="vendor-icon"
+                    src="vendor.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Add Product"
+                    class="add-product-icon"
+                    src="add-product.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Edit Product"
+                    class="remove-product-icon"
+                    src="edit-product.png"
+                    alt=""
+                /></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="larger" name="checkBox2" checked />
+            </td>
+            <td>2</td>
+            <td>Computer</td>
+            <td>Lenovo</td>
+            <td>Product Description A</td>
+            <td>A</td>
+            <td>Yes</td>
+            <td>90$</td>
+            <td>85$</td>
+            <td>90</td>
+            <td>C</td>
+            <td>40$</td>
+            <td>130</td>
+            <td>Address 51 , Street 3</td>
+            <td>
+              <div class="action-img-class">
+                <a href=""
+                  ><img
+                    title="Add Vendor"
+                    id="addRow"
+                    class="vendor-icon"
+                    src="vendor.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Add Product"
+                    class="add-product-icon"
+                    src="add-product.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Edit Product"
+                    class="remove-product-icon"
+                    src="edit-product.png"
+                    alt=""
+                /></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="larger" name="checkBox2" checked />
+            </td>
+            <td>3</td>
+            <td>IPhone</td>
+            <td>Lenovo</td>
+            <td>Product Description A</td>
+            <td>B</td>
+            <td>Yes</td>
+            <td>185$</td>
+            <td>85$</td>
+            <td>100</td>
+            <td>C</td>
+            <td>30$</td>
+            <td>130</td>
+            <td>Address 2141 , Street 1</td>
+            <td>
+              <div class="action-img-class">
+                <a href=""
+                  ><img
+                    title="Add Vendor"
+                    class="vendor-icon"
+                    src="vendor.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Add Product"
+                    class="add-product-icon"
+                    src="add-product.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Edit Product"
+                    class="remove-product-icon"
+                    src="edit-product.png"
+                    alt=""
+                /></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="larger" name="checkBox2" checked />
+            </td>
+            <td>4</td>
+            <td>Tab</td>
+            <td>Lenovo</td>
+            <td>Product Description A</td>
+            <td>C</td>
+            <td>Yes</td>
+            <td>55$</td>
+            <td>85$</td>
+            <td>100</td>
+            <td>B</td>
+            <td>20$</td>
+            <td>130</td>
+            <td>Address 2141 , Street 1</td>
+            <td>
+              <div class="action-img-class">
+                <a href=""
+                  ><img
+                    title="Add Vendor"
+                    class="vendor-icon"
+                    src="vendor.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Add Product"
+                    class="add-product-icon"
+                    src="add-product.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Edit Product"
+                    class="remove-product-icon"
+                    src="edit-product.png"
+                    alt=""
+                /></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="larger" name="checkBox2" checked />
+            </td>
+            <td>5</td>
+            <td>Mobile</td>
+            <td>Lenovo</td>
+            <td>Product Description A</td>
+            <td>Product Vendor A</td>
+            <td>Yes</td>
+            <td>150$</td>
+            <td>85$</td>
+            <td>100</td>
+            <td>A</td>
+            <td>20$</td>
+            <td>130</td>
+            <td>Address 2141 , Street 1</td>
+            <td>
+              <div class="action-img-class">
+                <a href=""
+                  ><img
+                    title="Add Vendor"
+                    class="vendor-icon"
+                    src="vendor.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Add Product"
+                    class="add-product-icon"
+                    src="add-product.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Edit Product"
+                    class="remove-product-icon"
+                    src="edit-product.png"
+                    alt=""
+                /></a>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <input type="checkbox" class="larger" name="checkBox2" checked />
+            </td>
+            <td>6</td>
+            <td>Laptop</td>
+            <td>Samsung</td>
+            <td>Product Description A</td>
+            <td>Product Vendor A</td>
+            <td>Yes</td>
+            <td>20$</td>
+            <td>85$</td>
+            <td>100</td>
+            <td>D</td>
+            <td>20$</td>
+            <td>130</td>
+            <td>Address 2141 , Street 1</td>
+            <td>
+              <div class="action-img-class">
+                <a href=""
+                  ><img
+                    title="Add Vendor"
+                    class="vendor-icon"
+                    src="vendor.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Add Product"
+                    class="add-product-icon"
+                    src="add-product.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Edit Product"
+                    class="remove-product-icon"
+                    src="edit-product.png"
+                    alt=""
+                /></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="larger" name="checkBox2" checked />
+            </td>
+            <td>7</td>
+            <td>Computer</td>
+            <td>Dull</td>
+            <td>Product Description A</td>
+            <td>Product Vendor D</td>
+            <td>Yes</td>
+            <td>105$</td>
+            <td>85$</td>
+            <td>100</td>
+            <td>E</td>
+            <td>20$</td>
+            <td>130</td>
+            <td>Address 2141 , Street 1</td>
+            <td>
+              <div class="action-img-class">
+                <a href=""
+                  ><img
+                    title="Add Vendor"
+                    class="vendor-icon"
+                    src="vendor.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Add Product"
+                    class="add-product-icon"
+                    src="add-product.png"
+                    alt=""
+                /></a>
+                <a href=""
+                  ><img
+                    title="Edit Product"
+                    class="remove-product-icon"
+                    src="edit-product.png"
+                    alt=""
+                /></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script>
-        // Function to sort table data
-        function sortTable(columnIndex) {
-            var table, rows, switching, i, x, y, shouldSwitch;
-            table = document.getElementById("dataTable");
-            switching = true;
-            // Set the sorting direction to ascending
-            var direction = "asc";
+      // Function to sort table data
+      function sortTable(columnIndex) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("dataTable");
+        switching = true;
+        // Set the sorting direction to ascending
+        var direction = "asc";
 
-            while (switching) {
-                switching = false;
-                rows = table.rows;
-                // Loop through all table rows except the header
-                for (i = 1; i < (rows.length - 1); i++) {
-                    shouldSwitch = false;
-                    // Get the two elements you want to compare
-                    x = rows[i].getElementsByTagName("td")[columnIndex];
-                    y = rows[i + 1].getElementsByTagName("td")[columnIndex];
-                    // Check if the two rows should switch places based on the sorting direction
-                    if (direction === "asc") {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    } else if (direction === "desc") {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                }
-                if (shouldSwitch) {
-                    // If a switch has been marked, make the switch and mark that a switch has been done
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                    // Increase the switch count for each switch
-                }
-            }
-            // Reverse the sorting direction
+        while (switching) {
+          switching = false;
+          rows = table.rows;
+          // Loop through all table rows except the header
+          for (i = 1; i < rows.length - 1; i++) {
+            shouldSwitch = false;
+            // Get the two elements you want to compare
+            x = rows[i].getElementsByTagName("td")[columnIndex];
+            y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+            // Check if the two rows should switch places based on the sorting direction
             if (direction === "asc") {
-                direction = "desc";
-            } else {
-                direction = "asc";
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            } else if (direction === "desc") {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
             }
+          }
+          if (shouldSwitch) {
+            // If a switch has been marked, make the switch and mark that a switch has been done
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            // Increase the switch count for each switch
+          }
         }
+        // Reverse the sorting direction
+        if (direction === "asc") {
+          direction = "desc";
+        } else {
+          direction = "asc";
+        }
+      }
 
-        // Attach event listeners to table headers for sorting
-        document.querySelectorAll("#dataTable th").forEach((header, index) => {
-            header.addEventListener("click", () => {
-                sortTable(index);
-            });
+      // Attach event listeners to table headers for sorting
+      document.querySelectorAll("#dataTable th").forEach((header, index) => {
+        header.addEventListener("click", () => {
+          sortTable(index);
+        });
+      });
+    </script>
+    <script>
+      // Function to display product details in a new window
+      function displayProductDetails(row) {
+        // Extract data from the row
+        var rowData = [];
+        var cells = row.getElementsByTagName("td");
+        for (var i = 1; i < cells.length - 1; i++) {
+          // Start from index 1 to skip the checkbox column, and exclude the last column with action icons
+          rowData.push(cells[i].innerText);
+        }
+        // Open a new window to display the data
+        var detailsWindow = window.open(
+          "",
+          "Product Details",
+          "width=600,height=400"
+        );
+        detailsWindow.document.write("<h2>Product Details</h2>");
+        detailsWindow.document.write("<ul>");
+        var columnNames = [
+          "ID",
+          "Product Name",
+          "Product Title",
+          "Product Description",
+          "Product Vendor",
+          "In Stock",
+          "Buying Price",
+          "Sale Price",
+          "Purchase Quantity",
+          "Product Type",
+          "Shipping Rates",
+          "Refill Limit",
+          "Product Location Address",
+        ];
+        for (var j = 0; j < rowData.length; j++) {
+          detailsWindow.document.write(
+            "<li><strong>" +
+              columnNames[j] +
+              ":</strong> " +
+              rowData[j] +
+              "</li>"
+          );
+        }
+        detailsWindow.document.write("</ul>");
+      }
+
+      // Attach event listeners to "Edit Product" icons
+      document
+        .querySelectorAll(".remove-product-icon")
+        .forEach(function (icon) {
+          icon.addEventListener("click", function () {
+            var row = this.closest("tr");
+            displayProductDetails(row);
+          });
         });
     </script>
-</body>
 
+    <script src="index.js"></script>
+  </body>
 </html>
